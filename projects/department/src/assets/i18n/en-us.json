@@ -7,7 +7,10 @@
         "DELETE": "Delete",
         "SAVE": "Save",
         "CANCEL": "Cancel",
-        "CREATE": "Create"
+        "CREATE": "Create",
+        "ARE_YOU_SURE": "Are you sure",
+        "YES": "Yes",
+        "NO": "No"
     },
     "DEPARTMENT": {
         "NAME": "Name",

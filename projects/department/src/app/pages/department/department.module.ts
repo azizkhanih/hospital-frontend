@@ -3,11 +3,11 @@ import { NgModule } from '@angular/core';
 import { RouterModule } from '@angular/router';
 import { DepartmentCardModule } from '../../components/department-card/department-card.module';
 import { SharedModule } from '../../shared/shared.module';
-import { DepartmentsComponent } from './departments.component';
+import { DepartmentComponent } from './department.component';
 
 const BASE_MODULES = [CommonModule, RouterModule];
 const CLIMEDO_MODULES = [SharedModule, DepartmentCardModule];
-const COMPONENT = [DepartmentsComponent];
+const COMPONENT = [DepartmentComponent];
 
 @NgModule({
     declarations: [...COMPONENT],
@@ -21,4 +21,4 @@ const COMPONENT = [DepartmentsComponent];
         ...COMPONENT
     ],
 })
-export class DepartmentsModule { }
+export class DepartmentModule { }
