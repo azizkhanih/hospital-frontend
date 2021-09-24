@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { ChangeDetectionStrategy, ChangeDetectorRef, Component, OnInit } from '@angular/core';
 import { Subject } from 'rxjs';
 import { debounceTime, distinctUntilChanged } from 'rxjs/operators';
 import { Department } from '../../models';
@@ -6,20 +6,21 @@ import { Department } from '../../models';
 @Component({
   selector: 'app-departments',
   templateUrl: './departments.component.html',
-  styleUrls: ['./departments.component.scss']
+  styleUrls: ['./departments.component.scss'],
+  changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class DepartmentsComponent implements OnInit
 {
   departmentList: Department[] = [];
-  departmentListFiltered: Department[] = [];
+  filteredDepartmentList: Department[] = [];
 
   searchTerm: string = '';
   searchTermChanged: Subject<string> = new Subject<string>();
 
-  constructor()
+  constructor(protected changeDetectorRef: ChangeDetectorRef)
   {
     this.searchTermChanged.pipe(
-      debounceTime(300),
+      debounceTime(500),
       distinctUntilChanged())
       .subscribe((term: string) =>
       {
@@ -29,6 +30,13 @@ export class DepartmentsComponent implements OnInit
 
   ngOnInit(): void
   {
+    this.getDepartments();
+  }
+
+  getDepartments(): void
+  {
+    this.departmentList = this.getMockData();
+    this.filteredDepartmentList = this.departmentList;
   }
 
   searchChanged(term: string): void
@@ -39,13 +47,47 @@ export class DepartmentsComponent implements OnInit
   search(term: string): void
   {
     const keyword = term.toLowerCase();
-    this.departmentListFiltered = this.departmentList.filter(
-      x => x.DepartmentInfo.Name.toLowerCase().includes(keyword) ||
-        x.DepartmentInfo.APIKey.toLowerCase().includes(keyword) ||
-        x.DepartmentContactPerson.Name.toLowerCase().includes(keyword) ||
-        x.DepartmentContactPerson.Email.toLowerCase().includes(keyword) ||
-        x.DepartmentContactPerson.Telephone.toLowerCase().includes(keyword)
+    this.filteredDepartmentList = this.departmentList.filter(
+      x => x.DepartmentInfo.Name.toLowerCase().indexOf(keyword) > -1 ||
+        x.DepartmentInfo.APIKey.toLowerCase().indexOf(keyword) > -1 ||
+        x.DepartmentContactPerson.Name.toLowerCase().indexOf(keyword) > -1 ||
+        x.DepartmentContactPerson.Email.toLowerCase().indexOf(keyword) > -1 ||
+        x.DepartmentContactPerson.Telephone.toLowerCase().indexOf(keyword) > -1
     );
+
+    this.changeDetectorRef.detectChanges();
+  }
+
+  getMockData(): Department[]
+  {
+    return [
+      {
+        Id: '1',
+        DepartmentInfo: {
+          Name: 'Cordiology',
+          APIKey: 'dssdg-dasf-erte'
+        },
+        DepartmentContactPerson: {
+
+          Name: 'Steve',
+          Email: 'steve@gmail.com',
+          Telephone: '4546764566'
+        }
+      },
+      {
+        Id: '2',
+        DepartmentInfo: {
+          Name: 'Oncology',
+          APIKey: 'dssdg-e5r6-sdfde'
+        },
+        DepartmentContactPerson: {
+
+          Name: 'Json',
+          Email: 'json@gmail.com',
+          Telephone: '456212123'
+        }
+      }
+    ];
   }
 
 }

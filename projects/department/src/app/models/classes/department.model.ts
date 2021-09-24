@@ -3,6 +3,18 @@ import { DepartmentInfo } from "./department-info.model";
 
 export class Department
 {
-    DepartmentInfo: DepartmentInfo = new DepartmentInfo('', '');
-    DepartmentContactPerson: DepartmentContactPerson = new DepartmentContactPerson('', '', '');
+    Id: string;
+    DepartmentInfo: DepartmentInfo;
+    DepartmentContactPerson: DepartmentContactPerson;
+
+    constructor(
+        id: string = '',
+        departmentInfo = new DepartmentInfo('', ''),
+        departmentContactPerson = new DepartmentContactPerson('', '', '')
+    )
+    {
+        this.Id = id;
+        this.DepartmentInfo = departmentInfo;
+        this.DepartmentContactPerson = departmentContactPerson;
+    }
 }

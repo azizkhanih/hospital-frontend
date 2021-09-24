@@ -6,15 +6,22 @@
         <div>
             <h4>{{ 'COMMON.DEPARTMENTS' | translate }}</h4>
         </div>
+
         <div class="row align-items-center">
             <div class="col-9">
-                <input class="w-100" type="text" placeholder="{{'COMMON.SEARCH' | translate}}" [ngModel]='searchTerm'
-                    (ngModelChange)='searchChanged($event)' autocomplete="off" />
+                <input class="form-control w-100" type="text" placeholder="{{'COMMON.SEARCH' | translate}}"
+                    [ngModel]='searchTerm' (ngModelChange)='searchChanged($event)' autocomplete="off" />
             </div>
             <div class="col-3">
                 <button type="button" class="btn btn-success w-100">{{ 'DEPARTMENTS.CREATE_NEW_DEPARTMENTS' |
                     translate}}</button>
             </div>
+        </div>
+
+        <div class="d-flex flex-row flex-wrap">
+            <ng-container *ngFor="let department of filteredDepartmentList">
+                <app-department-card class="m-2" [department]="department"></app-department-card>
+            </ng-container>
         </div>
     </div>
 </div>

@@ -9,6 +9,7 @@ import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { DepartmentsComponent } from './pages/departments/departments.component';
 import { SharedModule } from './shared/shared.module';
+import { DepartmentCardComponent } from './components/department-card/department-card.component';
 
 const CLIMEDO_MATERIAL_MODULES = [SharedModule];
 
@@ -36,7 +37,8 @@ export function translateFactory(translate: TranslateService)
 @NgModule({
   declarations: [
     AppComponent,
-    DepartmentsComponent
+    DepartmentsComponent,
+    DepartmentCardComponent
   ],
   imports: [
     BrowserModule,

@@ -1,7 +1,22 @@
 {
     "COMMON": {
         "SEARCH": "Search",
-        "DEPARTMENTS": "Departments"
+        "DEPARTMENTS": "Departments",
+        "OPEN": "Open",
+        "EDIT": "Edit",
+        "DELETE": "Delete",
+        "SAVE": "Save",
+        "CANCEL": "Cancel",
+        "CREATE": "Create"
+    },
+    "DEPARTMENT": {
+        "NAME": "Name",
+        "API_KEY": "API Key",
+        "EMAIL": "Email",
+        "TELEPHONE": "Telephone",
+        "DEPARTMENT_INFO": "Telephone",
+        "DEPARTMENT_CONTACT_INFO": "Telephone",
+        "ADD_NEW_FIELD": "Add new field"
     },
     "DEPARTMENTS": {
         "CREATE_NEW_DEPARTMENTS": "Create new department"

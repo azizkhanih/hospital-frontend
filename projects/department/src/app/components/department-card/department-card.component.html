@@ -1,0 +1,37 @@
+<div class="card" style="width: 18rem;">
+    <div class="card-body">
+        <h6 class="card-title">{{ department.DepartmentInfo.Name }}</h6>
+        <p class="text-center"><i class="fa fa-calendar fa-4x" aria-hidden="true"></i></p>
+
+        <div class="btn-group btn-group-toggle w-100">
+            <label class="btn-success" ngbButtonLabel>
+                {{ 'COMMON.OPEN' | translate }}
+            </label>
+            <div ngbDropdown class="d-inline-block">
+                <button class="btn btn-success" id="dropdownBasic1" ngbDropdownToggle></button>
+                <div ngbDropdownMenu aria-labelledby="dropdownBasic1">
+                    <button ngbDropdownItem class="text-center"><i class="fa fa-edit px-2" aria-hidden="true"></i>{{
+                        'COMMON.EDIT' |
+                        translate }}</button>
+                    <button ngbDropdownItem class="text-center"><i class="fa fa-trash px-2" aria-hidden="true"></i>{{
+                        'COMMON.DELETE' |
+                        translate }}</button>
+                </div>
+            </div>
+        </div>
+
+        <!-- <div class="btn-group" role="group" aria-label="Button group with nested dropdown">
+            <button type="button" class="btn btn-success">{{ 'COMMON.OPEN' | translate }}</button>
+
+            <div class="btn-group" role="group">
+                <button id="btnGroupDrop1" type="button" class="btn btn-success dropdown-toggle"
+                    data-bs-toggle="dropdown" aria-expanded="false">
+                </button>
+                <ul class="dropdown-menu" aria-labelledby="btnGroupDrop1">
+                    <li><a class="dropdown-item" href="#">{{ 'COMMON.EDIT' | translate }}</a></li>
+                    <li><a class="dropdown-item" href="#">{{ 'COMMON.DELETE' | translate }}</a></li>
+                </ul>
+            </div>
+        </div> -->
+    </div>
+</div>
