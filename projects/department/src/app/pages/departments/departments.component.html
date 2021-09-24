@@ -1,7 +1,20 @@
 <div>
     <div class="alert alert-danger" role="alert">
-        Departments
+        {{ 'COMMON.DEPARTMENTS' | translate }}
     </div>
     <div class="container-fluid">
+        <div>
+            <h4>{{ 'COMMON.DEPARTMENTS' | translate }}</h4>
+        </div>
+        <div class="row align-items-center">
+            <div class="col-9">
+                <input class="w-100" type="text" placeholder="{{'COMMON.SEARCH' | translate}}" [ngModel]='searchTerm'
+                    (ngModelChange)='searchChanged($event)' autocomplete="off" />
+            </div>
+            <div class="col-3">
+                <button type="button" class="btn btn-success w-100">{{ 'DEPARTMENTS.CREATE_NEW_DEPARTMENTS' |
+                    translate}}</button>
+            </div>
+        </div>
     </div>
 </div>

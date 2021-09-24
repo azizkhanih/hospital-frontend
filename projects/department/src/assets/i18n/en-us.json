@@ -1,0 +1,9 @@
+{
+    "COMMON": {
+        "SEARCH": "Search",
+        "DEPARTMENTS": "Departments"
+    },
+    "DEPARTMENTS": {
+        "CREATE_NEW_DEPARTMENTS": "Create new department"
+    }
+}

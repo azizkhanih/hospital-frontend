@@ -1,25 +1,63 @@
-import { NgModule } from '@angular/core';
+import { HttpClient, HttpClientModule } from '@angular/common/http';
+import { APP_INITIALIZER, NgModule } from '@angular/core';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { BrowserModule } from '@angular/platform-browser';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
+import { TranslateLoader, TranslateModule, TranslateService } from '@ngx-translate/core';
+import { TranslateHttpLoader } from '@ngx-translate/http-loader';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
-import { DepartmentComponent } from './pages/department/department.component';
-import { DepartmentsModule } from './pages/departments/departments.module';
+import { DepartmentsComponent } from './pages/departments/departments.component';
+import { SharedModule } from './shared/shared.module';
 
-const CLIMEDO_MATERIAL_MODULES = [DepartmentsModule];
+const CLIMEDO_MATERIAL_MODULES = [SharedModule];
+
+// AOT compilation support
+export function httpTranslateLoader(http: HttpClient): TranslateHttpLoader
+{
+  return new TranslateHttpLoader(http);
+}
+export function translateFactory(translate: TranslateService)
+{
+  return async (): Promise<void> =>
+  {
+    translate.setDefaultLang('en-us');
+    translate.use('en-us');
+    return new Promise<void>((resolve) =>
+    {
+      translate.onLangChange.subscribe(() =>
+      {
+        resolve();
+      });
+    });
+  };
+}
 
 @NgModule({
   declarations: [
     AppComponent,
-    DepartmentComponent
+    DepartmentsComponent
   ],
   imports: [
     BrowserModule,
     AppRoutingModule,
+    HttpClientModule,
+    NgbModule,
+    FormsModule,
+    ReactiveFormsModule,
     CLIMEDO_MATERIAL_MODULES,
-    NgbModule
+    TranslateModule.forRoot({
+      defaultLanguage: 'en-us',
+      loader: {
+        provide: TranslateLoader,
+        useFactory: httpTranslateLoader,
+        deps: [HttpClient],
+      },
+    }),
   ],
-  providers: [],
+  providers: [
+    { provide: APP_INITIALIZER, useFactory: translateFactory, deps: [TranslateService], multi: true }
+  ],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
