@@ -31,6 +31,7 @@
               "projects/department/src/assets"
             ],
             "styles": [
+              "node_modules/bootstrap/dist/css/bootstrap.min.css",
               "projects/department/src/styles.scss"
             ],
             "scripts": []
@@ -99,6 +100,7 @@
               "projects/department/src/assets"
             ],
             "styles": [
+              "node_modules/bootstrap/dist/css/bootstrap.min.css",
               "projects/department/src/styles.scss"
             ],
             "scripts": []
