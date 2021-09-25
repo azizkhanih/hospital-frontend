@@ -1,11 +1,12 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
-import { DepartmentsComponent } from './pages/departments/departments.component';
+import { DepartmentLayoutComponent } from './layout/department/department-layout.component';
 
 const routes: Routes = [
   {
     path: '',
-    component: DepartmentsComponent,
+    component: DepartmentLayoutComponent,
+    loadChildren: () => import('./pages/departments/departments.module').then((m) => m.DepartmentsModule),
   },
 ];
 

@@ -3,6 +3,7 @@ import { NgModule } from '@angular/core';
 import { RouterModule } from '@angular/router';
 import { DepartmentCardModule } from '../../components/department-card/department-card.module';
 import { SharedModule } from '../../shared/shared.module';
+import { DepartmentsRoutingModule } from './departments-routing.module';
 import { DepartmentsComponent } from './departments.component';
 
 const BASE_MODULES = [CommonModule, RouterModule];
@@ -14,6 +15,7 @@ const COMPONENT = [DepartmentsComponent];
     imports: [
         ...BASE_MODULES,
         ...CLIMEDO_MODULES,
+        DepartmentsRoutingModule
     ],
     exports: [
         ...BASE_MODULES,

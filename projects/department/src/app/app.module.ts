@@ -7,11 +7,12 @@ import { TranslateHttpLoader } from '@ngx-translate/http-loader';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { DepartmentCardModule } from './components/department-card/department-card.module';
+import { LayoutModule } from './layout/layout.module';
 import { DepartmentModule } from './pages/department/department.module';
 import { DepartmentsModule } from './pages/departments/departments.module';
 import { SharedModule } from './shared/shared.module';
 
-const CLIMEDO_MODULES = [SharedModule, DepartmentsModule, DepartmentModule, DepartmentCardModule];
+const CLIMEDO_MODULES = [SharedModule, LayoutModule, DepartmentsModule, DepartmentModule, DepartmentCardModule];
 
 // AOT compilation support
 export function httpTranslateLoader(http: HttpClient): TranslateHttpLoader
@@ -36,7 +37,7 @@ export function translateFactory(translate: TranslateService)
 
 @NgModule({
   declarations: [
-    AppComponent,
+    AppComponent
   ],
   imports: [
     BrowserModule,
