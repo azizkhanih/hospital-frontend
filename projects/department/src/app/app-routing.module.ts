@@ -8,6 +8,11 @@ const routes: Routes = [
     component: DepartmentLayoutComponent,
     loadChildren: () => import('./pages/departments/departments.module').then((m) => m.DepartmentsModule),
   },
+  {
+    path: 'department',
+    component: DepartmentLayoutComponent,
+    loadChildren: () => import('./pages/department/department.module').then((m) => m.DepartmentModule),
+  }
 ];
 
 @NgModule({

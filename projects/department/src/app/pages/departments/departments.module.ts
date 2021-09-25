@@ -1,26 +1,27 @@
 import { CommonModule } from '@angular/common';
 import { NgModule } from '@angular/core';
-import { RouterModule } from '@angular/router';
+import { RouterModule, Routes } from '@angular/router';
 import { DepartmentCardModule } from '../../components/department-card/department-card.module';
 import { SharedModule } from '../../shared/shared.module';
-import { DepartmentsRoutingModule } from './departments-routing.module';
 import { DepartmentsComponent } from './departments.component';
 
 const BASE_MODULES = [CommonModule, RouterModule];
 const CLIMEDO_MODULES = [SharedModule, DepartmentCardModule];
 const COMPONENT = [DepartmentsComponent];
 
+const routes: Routes = [
+    {
+        path: '',
+        component: DepartmentsComponent
+    }
+];
+
 @NgModule({
     declarations: [...COMPONENT],
     imports: [
+        RouterModule.forChild(routes),
         ...BASE_MODULES,
-        ...CLIMEDO_MODULES,
-        DepartmentsRoutingModule
-    ],
-    exports: [
-        ...BASE_MODULES,
-        ...CLIMEDO_MODULES,
-        ...COMPONENT
-    ],
+        ...CLIMEDO_MODULES
+    ]
 })
 export class DepartmentsModule { }

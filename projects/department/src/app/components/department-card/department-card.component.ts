@@ -1,7 +1,4 @@
-import { ChangeDetectionStrategy, Component, Input, OnInit } from '@angular/core';
-import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
-import { TranslateService } from '@ngx-translate/core';
-import { ConfirmModalComponent } from '../../shared/components/confirm-modal/confirm-modal.component';
+import { ChangeDetectionStrategy, Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
 import { Department } from './../../models/classes/department.model';
 
 @Component({
@@ -14,37 +11,20 @@ export class DepartmentCardComponent implements OnInit
 {
   @Input() department: Department = new Department();
 
-  constructor(
-    private modalService: NgbModal,
-    private translateService: TranslateService,) { }
+  @Output() onEditEvent = new EventEmitter<string>();
+  @Output() onDeleteEvent = new EventEmitter<string>();
 
-  ngOnInit(): void
-  {
-  }
+  constructor() { }
+
+  ngOnInit(): void { }
 
   editDepartment(departmentId: string): void
   {
+    this.onEditEvent.next(departmentId);
   }
 
   deleteDepartment(departmentId: string): void
   {
-    const modalRef = this.modalService.open(ConfirmModalComponent, {
-      keyboard: true,
-      backdrop: 'static',
-    });
-
-    modalRef.componentInstance.title = this.translateService.instant('COMMON.DELETE');
-    modalRef.componentInstance.notificationText = this.translateService.instant('COMMON.ARE_YOU_SURE');
-    modalRef.componentInstance.yesButtonText = this.translateService.instant('COMMON.YES');
-    modalRef.componentInstance.NoButtonText = this.translateService.instant('COMMON.NO');
-    modalRef.result.then((confirmed) =>
-    {
-      if (confirmed)
-      {
-        //call remove function
-        modalRef.close(true);
-      }
-    });
+    this.onDeleteEvent.next(departmentId);
   }
-
 }

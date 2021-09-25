@@ -1,6 +1,6 @@
 <div class="modal-header">
     <h5 class="modal-title">
-        {{ title }}
+        {{ title | translate }}
     </h5>
     <button type="button" class="close" aria-label="Close" (click)="confirm(false)">
         <span aria-hidden="true">&times;</span>
@@ -8,14 +8,14 @@
 </div>
 <div class="modal-body">
     <p class="notification-info">
-        {{ notificationText }}
+        {{ notificationText | translate }}
     </p>
 </div>
 <div class="modal-footer">
     <button ngbAutofocus type="button" class="btn btn-primary btn-sm" (click)="confirm(true)">
-        {{ yesButtonText }}
+        {{ yesButtonText | translate}}
     </button>
     <button type="button" class="btn btn-secondary btn-sm" (click)="confirm(false)">
-        {{ NoButtonText }}
+        {{ NoButtonText | translate}}
     </button>
 </div>

@@ -1,7 +1,10 @@
 import { ChangeDetectionStrategy, ChangeDetectorRef, Component, OnInit } from '@angular/core';
+import { Router } from '@angular/router';
+import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
 import { Subject } from 'rxjs';
 import { debounceTime, distinctUntilChanged } from 'rxjs/operators';
 import { Department } from '../../models';
+import { ConfirmModalComponent } from '../../shared/components/confirm-modal/confirm-modal.component';
 
 @Component({
   selector: 'app-departments',
@@ -17,14 +20,17 @@ export class DepartmentsComponent implements OnInit
   searchTerm: string = '';
   searchTermChanged: Subject<string> = new Subject<string>();
 
-  constructor(protected changeDetectorRef: ChangeDetectorRef)
+  constructor(
+    private router: Router,
+    private modalService: NgbModal,
+    private changeDetectorRef: ChangeDetectorRef)
   {
     this.searchTermChanged.pipe(
       debounceTime(500),
       distinctUntilChanged())
       .subscribe((term: string) =>
       {
-        this.search(term);
+        this.searchInDepartments(term);
       });
   }
 
@@ -39,12 +45,48 @@ export class DepartmentsComponent implements OnInit
     this.filteredDepartmentList = this.departmentList;
   }
 
+  createDepartment(): void
+  {
+    this.navigateToDepartment('');
+  }
+
+  editDepartment(departmentId: string): void
+  {
+    this.navigateToDepartment(departmentId);
+  }
+
+  deleteDepartment(departmentId: string): void
+  {
+    const modalRef = this.modalService.open(ConfirmModalComponent, {
+      keyboard: true,
+      backdrop: 'static',
+    });
+
+    modalRef.componentInstance.title = 'COMMON.DELETE';
+    modalRef.componentInstance.notificationText = 'COMMON.ARE_YOU_SURE';
+    modalRef.componentInstance.yesButtonText = 'COMMON.YES';
+    modalRef.componentInstance.NoButtonText = 'COMMON.NO';
+    modalRef.result.then((confirmed) =>
+    {
+      if (confirmed)
+      {
+        //call remove function 
+        modalRef.close(true);
+      }
+    });
+  }
+
+  navigateToDepartment(departmentId?: string): void
+  {
+    this.router.navigate(['./department', departmentId || '']);
+  }
+
   searchChanged(term: string): void
   {
     this.searchTermChanged.next(term);
   }
 
-  search(term: string): void
+  searchInDepartments(term: string): void
   {
     const keyword = term.toLowerCase();
     this.filteredDepartmentList = this.departmentList.filter(

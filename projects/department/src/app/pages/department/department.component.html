@@ -1,1 +1,17 @@
-<p>department works!</p>
+<div>
+    <div>
+        <h4>{{ 'COMMON.DEPARTMENTS' | translate }} >
+            <ng-container *ngIf="departmentId; else elseNewDepartmentTitle">
+                {{ 'COMMON.EDIT' | translate }}
+            </ng-container>
+        </h4>
+    </div>
+
+    <div class="container">
+
+    </div>
+</div>
+
+<ng-template #elseNewDepartmentTitle>
+    {{ 'COMMON.NEW' | translate }}
+</ng-template>
