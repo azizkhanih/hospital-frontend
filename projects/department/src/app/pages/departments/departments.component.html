@@ -1,4 +1,4 @@
-<div>
+<div class="mb-3">
     <div>
         <h4>{{ 'COMMON.DEPARTMENTS' | translate }}</h4>
     </div>
@@ -6,7 +6,7 @@
     <div class="row align-items-center">
         <div class="col-9">
             <input class="form-control w-100" type="text" placeholder="{{'COMMON.SEARCH' | translate}}"
-                [ngModel]='searchTerm' (ngModelChange)='searchChanged($event)' autocomplete="off" />
+                [(ngModel)]='searchTerm' (ngModelChange)='searchChanged($event)' autocomplete="off" />
         </div>
         <div class="col-3">
             <button type="button" class="btn btn-success w-100" (click)="navigateToDepartment()">{{

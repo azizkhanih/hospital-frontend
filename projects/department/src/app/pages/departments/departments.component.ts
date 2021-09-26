@@ -1,10 +1,11 @@
-import { ChangeDetectionStrategy, ChangeDetectorRef, Component, OnInit } from '@angular/core';
+import { ChangeDetectionStrategy, ChangeDetectorRef, Component, OnDestroy, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
-import { Subject } from 'rxjs';
+import { Subject, Subscription } from 'rxjs';
 import { debounceTime, distinctUntilChanged } from 'rxjs/operators';
 import { Department } from '../../models';
 import { ConfirmModalComponent } from '../../shared/components/confirm-modal/confirm-modal.component';
+import { DepartmentsService } from './departments.service';
 
 @Component({
   selector: 'app-departments',
@@ -12,10 +13,12 @@ import { ConfirmModalComponent } from '../../shared/components/confirm-modal/con
   styleUrls: ['./departments.component.scss'],
   changeDetection: ChangeDetectionStrategy.OnPush
 })
-export class DepartmentsComponent implements OnInit
+export class DepartmentsComponent implements OnInit, OnDestroy
 {
   departmentList: Department[] = [];
   filteredDepartmentList: Department[] = [];
+  searchTermSubscription: Subscription;
+  isLoading = false;
 
   searchTerm: string = '';
   searchTermChanged: Subject<string> = new Subject<string>();
@@ -23,13 +26,15 @@ export class DepartmentsComponent implements OnInit
   constructor(
     private router: Router,
     private modalService: NgbModal,
+    private departmentsService: DepartmentsService,
     private changeDetectorRef: ChangeDetectorRef)
   {
-    this.searchTermChanged.pipe(
+    this.searchTermSubscription = this.searchTermChanged.pipe(
       debounceTime(500),
       distinctUntilChanged())
       .subscribe((term: string) =>
       {
+        debugger;
         this.searchInDepartments(term);
       });
   }
@@ -39,10 +44,25 @@ export class DepartmentsComponent implements OnInit
     this.getDepartments();
   }
 
+  ngOnDestroy(): void
+  {
+    this.searchTermSubscription.unsubscribe();
+  }
+
   getDepartments(): void
   {
-    this.departmentList = this.getMockData();
-    this.filteredDepartmentList = this.departmentList;
+    this.departmentsService.getDepartments().subscribe({
+      next: (response) =>
+      {
+        this.departmentList = response.data;
+        this.filteredDepartmentList = response.data;
+        this.hideLoading();
+      },
+      error: () =>
+      {
+        this.hideLoading();
+      }
+    });
   }
 
   createDepartment(): void
@@ -70,8 +90,21 @@ export class DepartmentsComponent implements OnInit
     {
       if (confirmed)
       {
-        //call remove function 
-        modalRef.close(true);
+        this.departmentsService.deleteDepartment(departmentId).subscribe({
+          next: (response) =>
+          {
+            modalRef.close(true);
+            this.hideLoading();
+            this.getDepartments();
+
+            this.searchTerm = '';
+            this.changeDetectorRef.detectChanges();
+          },
+          error: () =>
+          {
+            this.hideLoading();
+          }
+        });
       }
     });
   }
@@ -108,36 +141,15 @@ export class DepartmentsComponent implements OnInit
     return filteredItems?.length > 0;
   }
 
-  getMockData(): Department[]
+  showLoading(): void
   {
-    return [
-      {
-        Id: '1',
-        DepartmentInfo: {
-          Name: 'Cordiology',
-          APIKey: 'dssdg-dasf-erte'
-        },
-        DepartmentContactPerson: {
-
-          Name: 'Steve',
-          Email: 'steve@gmail.com',
-          Telephone: '4546764566'
-        }
-      },
-      {
-        Id: '2',
-        DepartmentInfo: {
-          Name: 'Oncology',
-          APIKey: 'dssdg-e5r6-sdfde'
-        },
-        DepartmentContactPerson: {
-
-          Name: 'Json',
-          Email: 'json@gmail.com',
-          Telephone: '456212123'
-        }
-      }
-    ];
+    this.isLoading = true;
+    this.changeDetectorRef.detectChanges();
   }
 
+  hideLoading(): void
+  {
+    this.isLoading = false;
+    this.changeDetectorRef.detectChanges();
+  }
 }

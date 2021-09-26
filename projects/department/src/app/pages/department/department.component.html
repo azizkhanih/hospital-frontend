@@ -1,17 +1,146 @@
-<div>
-    <div>
+<div class="mb-3">
+    <div class="mb-5">
         <h4>{{ 'COMMON.DEPARTMENTS' | translate }} >
-            <ng-container *ngIf="departmentId; else elseNewDepartmentTitle">
-                {{ 'COMMON.EDIT' | translate }}
-            </ng-container>
+            <ng-container *ngIf="departmentId; then editDepartmentTitle; else createDepartmentTitle"></ng-container>
         </h4>
     </div>
 
     <div class="container">
+        <div class="row justify-content-lg-center">
+            <div class="col-lg-8 col-md-12">
+                <form [formGroup]="departmentForm" (ngSubmit)="onSubmit()">
+                    <fieldset class="border p-4 mb-4">
+                        <legend class="w-auto px-2 float-none">{{ 'DEPARTMENT.DEPARTMENT_INFO' | translate }}</legend>
 
+                        <div formGroupName="departmentInfoForm">
+                            <div class="row mb-3">
+                                <label for="name" class="col-sm-2 col-form-label">{{ 'DEPARTMENT.NAME' |
+                                    translate}}</label>
+                                <div class="col-sm-10">
+                                    <input type="name" class="form-control" id="name" formControlName="name"
+                                        [ngClass]="{ 'is-invalid': submitted && departmentInfoFormControls.controls.name.errors }">
+                                    <div *ngIf="submitted && departmentInfoFormControls.controls.name.errors"
+                                        class="invalid-feedback">
+                                        <div *ngIf="departmentInfoFormControls.controls.name.errors.required">
+                                            {{ 'MESSAGE.FIELD_IS_REQUIRED' | translate }}
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="row mb-3">
+                                <label for="apiKey" class="col-sm-2 col-form-label">{{ 'DEPARTMENT.API_KEY' |
+                                    translate}}</label>
+                                <div class="col-sm-10">
+                                    <input type="apiKey" class="form-control" id="apiKey" formControlName="apiKey"
+                                        [ngClass]="{ 'is-invalid': submitted && departmentInfoFormControls.controls.apiKey.errors }">
+                                    <div *ngIf="submitted && departmentInfoFormControls.controls.apiKey.errors"
+                                        class="invalid-feedback">
+                                        <div *ngIf="departmentInfoFormControls.controls.apiKey.errors.required">
+                                            {{ 'MESSAGE.FIELD_IS_REQUIRED' | translate }}
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <button type="button" class="btn btn-success float-end">{{ 'DEPARTMENT.ADD_NEW_FIELD' |
+                                translate}}</button>
+                        </div>
+                    </fieldset>
+
+                    <fieldset class="border p-4 mb-4">
+                        <legend class="w-auto px-2  float-none">{{ 'DEPARTMENT.DEPARTMENT_CONTACT_INFO' | translate }}
+                        </legend>
+
+                        <div formGroupName="departmentContactPersonForm">
+                            <div class="row mb-3">
+                                <label for="name" class="col-sm-2 col-form-label">{{ 'DEPARTMENT.NAME' |
+                                    translate}}</label>
+                                <div class="col-sm-10">
+                                    <input type="name" class="form-control" id="name" formControlName="name"
+                                        [ngClass]="{ 'is-invalid': submitted && departmentContactPersonFormControls.controls.name.errors }">
+                                    <div *ngIf="submitted && departmentContactPersonFormControls.controls.name.errors"
+                                        class="invalid-feedback">
+                                        <div *ngIf="departmentContactPersonFormControls.controls.name.errors.required">
+                                            {{ 'MESSAGE.FIELD_IS_REQUIRED' | translate }}
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="row mb-3">
+                                <label for="email" class="col-sm-2 col-form-label">{{ 'DEPARTMENT.EMAIL' |
+                                    translate}}</label>
+                                <div class="col-sm-10">
+                                    <input type="email" class="form-control" id="email" formControlName="email"
+                                        [ngClass]="{ 'is-invalid': submitted && departmentContactPersonFormControls.controls.email.errors }">
+                                    <div *ngIf="submitted && departmentContactPersonFormControls.controls.email.errors"
+                                        class="invalid-feedback">
+                                        <div *ngIf="departmentContactPersonFormControls.controls.email.errors.required">
+                                            {{ 'MESSAGE.FIELD_IS_REQUIRED' | translate }}
+                                        </div>
+                                        <div *ngIf="departmentContactPersonFormControls.controls.email.errors.pattern">
+                                            {{ 'MESSAGE.EMAIL_FORMAT_IS_INVALID' | translate }}
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="row mb-3">
+                                <label for="telephone" class="col-sm-2 col-form-label">{{ 'DEPARTMENT.TELEPHONE' |
+                                    translate}}</label>
+                                <div class="col-sm-10">
+                                    <input type="telephone" class="form-control" id="telephone"
+                                        formControlName="telephone"
+                                        [ngClass]="{ 'is-invalid': submitted && departmentContactPersonFormControls.controls.telephone.errors }">
+                                    <div *ngIf="submitted && departmentContactPersonFormControls.controls.telephone.errors"
+                                        class="invalid-feedback">
+                                        <div
+                                            *ngIf="departmentContactPersonFormControls.controls.telephone.errors.required">
+                                            {{ 'MESSAGE.FIELD_IS_REQUIRED' | translate }}
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <button type="button" class="btn btn-success float-end">{{ 'DEPARTMENT.ADD_NEW_FIELD' |
+                                translate}}</button>
+                        </div>
+                    </fieldset>
+
+                    <div class="row">
+                        <div class="col-4">
+                            <button type="button" [routerLink]="['/']" class="btn btn-secondary float-end w-100">{{
+                                'COMMON.CANCEL'
+                                |
+                                translate}}</button>
+                        </div>
+                        <div class="col-8">
+                            <button type="submit" class="btn btn-success float-end w-100">
+                                <ng-container
+                                    *ngIf="departmentId; then updateDepartmentTitle; else saveDepartmentTitle">
+                                </ng-container>
+                            </button>
+                        </div>
+                    </div>
+                </form>
+            </div>
+        </div>
     </div>
 </div>
 
-<ng-template #elseNewDepartmentTitle>
-    {{ 'COMMON.NEW' | translate }}
+<ng-template #editDepartmentTitle>
+    {{ 'COMMON.EDIT' | translate }}
+</ng-template>
+
+<ng-template #createDepartmentTitle>
+    {{ 'COMMON.CREATE' | translate }}
+</ng-template>
+
+<ng-template #saveDepartmentTitle>
+    {{ 'COMMON.SAVE' | translate }}
+</ng-template>
+
+<ng-template #updateDepartmentTitle>
+    {{ 'COMMON.UPDATE' | translate }}
 </ng-template>

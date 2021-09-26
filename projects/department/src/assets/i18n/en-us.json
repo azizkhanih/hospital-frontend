@@ -8,21 +8,26 @@
         "DELETE": "Delete",
         "SAVE": "Save",
         "CANCEL": "Cancel",
+        "UPDATE": "Update",
         "CREATE": "Create",
         "ARE_YOU_SURE": "Are you sure",
         "YES": "Yes",
         "NO": "No"
+    },
+    "MESSAGE": {
+        "FIELD_IS_REQUIRED": "Field is required",
+        "EMAIL_FORMAT_IS_INVALID": "Email format is invalid"
+    },
+    "DEPARTMENTS": {
+        "CREATE_NEW_DEPARTMENTS": "Create new department"
     },
     "DEPARTMENT": {
         "NAME": "Name",
         "API_KEY": "API Key",
         "EMAIL": "Email",
         "TELEPHONE": "Telephone",
-        "DEPARTMENT_INFO": "Telephone",
-        "DEPARTMENT_CONTACT_INFO": "Telephone",
+        "DEPARTMENT_INFO": "Department Info",
+        "DEPARTMENT_CONTACT_INFO": "Department Contact Info",
         "ADD_NEW_FIELD": "Add new field"
-    },
-    "DEPARTMENTS": {
-        "CREATE_NEW_DEPARTMENTS": "Create new department"
     }
 }
