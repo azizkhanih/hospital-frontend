@@ -89,15 +89,23 @@ export class DepartmentsComponent implements OnInit
   searchInDepartments(term: string): void
   {
     const keyword = term.toLowerCase();
+    //implement filter to search for dynamic props
     this.filteredDepartmentList = this.departmentList.filter(
-      x => x.DepartmentInfo.Name.toLowerCase().indexOf(keyword) > -1 ||
-        x.DepartmentInfo.APIKey.toLowerCase().indexOf(keyword) > -1 ||
-        x.DepartmentContactPerson.Name.toLowerCase().indexOf(keyword) > -1 ||
-        x.DepartmentContactPerson.Email.toLowerCase().indexOf(keyword) > -1 ||
-        x.DepartmentContactPerson.Telephone.toLowerCase().indexOf(keyword) > -1
+      x =>
+      {
+        return this.filterObject(x.DepartmentInfo, keyword) || this.filterObject(x.DepartmentContactPerson, keyword);
+      }
     );
 
     this.changeDetectorRef.detectChanges();
+  }
+
+  //search into objects
+  filterObject(obj: Object, term: string): boolean
+  {
+    const objAsArray = Object.entries(obj);
+    const filteredItems = objAsArray.filter(([key, value]) => String(value).toLowerCase().indexOf(term) > -1);
+    return filteredItems?.length > 0;
   }
 
   getMockData(): Department[]
