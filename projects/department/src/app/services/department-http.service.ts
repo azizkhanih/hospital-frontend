@@ -110,7 +110,7 @@ export class DepartmentHttpService implements OnDestroy
         },
         DepartmentContactPerson: {
           Name: 'Jack',
-          Email: 'Jack@gmail.com',
+          Email: 'jack@gmail.com',
           Telephone: '77335599'
         }
       }

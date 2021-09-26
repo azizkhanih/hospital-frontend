@@ -91,7 +91,7 @@ export class DepartmentsComponent implements OnInit, OnDestroy
       if (confirmed)
       {
         this.departmentsService.deleteDepartment(departmentId).subscribe({
-          next: (response) =>
+          next: () =>
           {
             modalRef.close(true);
             this.hideLoading();

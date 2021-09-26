@@ -22,8 +22,6 @@ export class DepartmentComponent implements OnInit, OnDestroy
 
   isLoading = false;
 
-  emailRegex = "^[a-z0-9._%+-]+@[a-z0-9.-]+\\.[a-z]{2,4}$";
-
   constructor(
     private router: Router,
     private activatedRoute: ActivatedRoute,
@@ -40,7 +38,7 @@ export class DepartmentComponent implements OnInit, OnDestroy
       }),
       departmentContactPersonForm: this.formBuilder.group({
         name: [null, [Validators.required]],
-        email: [null, [Validators.required, Validators.pattern(this.emailRegex)]],
+        email: [null, [Validators.required, Validators.email]],
         telephone: [null, [Validators.required]]
       })
     });

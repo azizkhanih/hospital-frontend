@@ -17,7 +17,7 @@
                                 <label for="name" class="col-sm-2 col-form-label">{{ 'DEPARTMENT.NAME' |
                                     translate}}</label>
                                 <div class="col-sm-10">
-                                    <input type="name" class="form-control" id="name" formControlName="name"
+                                    <input type="text" class="form-control" id="name" formControlName="name"
                                         [ngClass]="{ 'is-invalid': submitted && departmentInfoFormControls.controls.name.errors }">
                                     <div *ngIf="submitted && departmentInfoFormControls.controls.name.errors"
                                         class="invalid-feedback">
@@ -32,7 +32,7 @@
                                 <label for="apiKey" class="col-sm-2 col-form-label">{{ 'DEPARTMENT.API_KEY' |
                                     translate}}</label>
                                 <div class="col-sm-10">
-                                    <input type="apiKey" class="form-control" id="apiKey" formControlName="apiKey"
+                                    <input type="text" class="form-control" id="apiKey" formControlName="apiKey"
                                         [ngClass]="{ 'is-invalid': submitted && departmentInfoFormControls.controls.apiKey.errors }">
                                     <div *ngIf="submitted && departmentInfoFormControls.controls.apiKey.errors"
                                         class="invalid-feedback">
@@ -57,7 +57,7 @@
                                 <label for="name" class="col-sm-2 col-form-label">{{ 'DEPARTMENT.NAME' |
                                     translate}}</label>
                                 <div class="col-sm-10">
-                                    <input type="name" class="form-control" id="name" formControlName="name"
+                                    <input type="text" class="form-control" id="name" formControlName="name"
                                         [ngClass]="{ 'is-invalid': submitted && departmentContactPersonFormControls.controls.name.errors }">
                                     <div *ngIf="submitted && departmentContactPersonFormControls.controls.name.errors"
                                         class="invalid-feedback">
@@ -79,7 +79,7 @@
                                         <div *ngIf="departmentContactPersonFormControls.controls.email.errors.required">
                                             {{ 'MESSAGE.FIELD_IS_REQUIRED' | translate }}
                                         </div>
-                                        <div *ngIf="departmentContactPersonFormControls.controls.email.errors.pattern">
+                                        <div *ngIf="departmentContactPersonFormControls.controls.email.errors.email">
                                             {{ 'MESSAGE.EMAIL_FORMAT_IS_INVALID' | translate }}
                                         </div>
                                     </div>
@@ -90,8 +90,7 @@
                                 <label for="telephone" class="col-sm-2 col-form-label">{{ 'DEPARTMENT.TELEPHONE' |
                                     translate}}</label>
                                 <div class="col-sm-10">
-                                    <input type="telephone" class="form-control" id="telephone"
-                                        formControlName="telephone"
+                                    <input type="text" class="form-control" id="telephone" formControlName="telephone"
                                         [ngClass]="{ 'is-invalid': submitted && departmentContactPersonFormControls.controls.telephone.errors }">
                                     <div *ngIf="submitted && departmentContactPersonFormControls.controls.telephone.errors"
                                         class="invalid-feedback">
