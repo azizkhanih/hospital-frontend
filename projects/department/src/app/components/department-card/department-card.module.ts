@@ -6,10 +6,10 @@ import { DepartmentCardComponent } from './department-card.component';
 
 const BASE_MODULES = [CommonModule, RouterModule];
 const CLIMEDO_MODULES = [SharedModule];
-const COMPONENT = [DepartmentCardComponent];
+const COMPONENTS = [DepartmentCardComponent];
 
 @NgModule({
-    declarations: [...COMPONENT],
+    declarations: [...COMPONENTS],
     imports: [
         ...BASE_MODULES,
         ...CLIMEDO_MODULES,
@@ -17,7 +17,7 @@ const COMPONENT = [DepartmentCardComponent];
     exports: [
         ...BASE_MODULES,
         ...CLIMEDO_MODULES,
-        ...COMPONENT
+        ...COMPONENTS
     ],
 })
 export class DepartmentCardModule { }

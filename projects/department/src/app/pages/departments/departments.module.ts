@@ -7,7 +7,7 @@ import { DepartmentsComponent } from './departments.component';
 
 const BASE_MODULES = [CommonModule, RouterModule];
 const CLIMEDO_MODULES = [SharedModule, DepartmentCardModule];
-const COMPONENT = [DepartmentsComponent];
+const COMPONENTS = [DepartmentsComponent];
 
 const routes: Routes = [
     {
@@ -17,7 +17,7 @@ const routes: Routes = [
 ];
 
 @NgModule({
-    declarations: [...COMPONENT],
+    declarations: [...COMPONENTS],
     imports: [
         RouterModule.forChild(routes),
         ...BASE_MODULES,
