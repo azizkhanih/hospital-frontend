@@ -69,15 +69,15 @@ export class DepartmentComponent implements OnInit, OnDestroy
       {
         const data = response.data;
         this.departmentForm.setValue({
-          id: data.Id,
+          id: data.id,
           departmentInfoForm: {
-            name: data.DepartmentInfo.Name,
-            apiKey: data.DepartmentInfo.APIKey
+            name: data.departmentInfo.name,
+            apiKey: data.departmentInfo.apiKey
           },
           departmentContactPersonForm: {
-            name: data.DepartmentContactPerson.Name,
-            email: data.DepartmentContactPerson.Email,
-            telephone: data.DepartmentContactPerson.Telephone
+            name: data.departmentContactPerson.name,
+            email: data.departmentContactPerson.email,
+            telephone: data.departmentContactPerson.telephone
           }
         });
         this.hideLoading();

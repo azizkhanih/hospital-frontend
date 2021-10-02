@@ -1,11 +1,8 @@
-import { DepartmentContactPerson } from "./department-contact-person.model";
-import { DepartmentInfo } from "./department-info.model";
-
 export class Department
 {
-    Id: string;
-    DepartmentInfo: DepartmentInfo;
-    DepartmentContactPerson: DepartmentContactPerson;
+    id: string;
+    departmentInfo: DepartmentInfo;
+    departmentContactPerson: DepartmentContactPerson;
 
     constructor(
         id: string = '',
@@ -13,8 +10,34 @@ export class Department
         departmentContactPerson = new DepartmentContactPerson('', '', '')
     )
     {
-        this.Id = id;
-        this.DepartmentInfo = departmentInfo;
-        this.DepartmentContactPerson = departmentContactPerson;
+        this.id = id;
+        this.departmentInfo = departmentInfo;
+        this.departmentContactPerson = departmentContactPerson;
+    }
+}
+
+export class DepartmentInfo
+{
+    name: string;
+    apiKey: string;
+
+    constructor(name: string, apiKey: string)
+    {
+        this.name = name;
+        this.apiKey = apiKey;
+    }
+}
+
+export class DepartmentContactPerson
+{
+    name: string;
+    email: string;
+    telephone: string;
+
+    constructor(name: string, email: string, telephone: string)
+    {
+        this.name = name;
+        this.email = email;
+        this.telephone = telephone;
     }
 }

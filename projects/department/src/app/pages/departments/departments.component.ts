@@ -126,7 +126,7 @@ export class DepartmentsComponent implements OnInit, OnDestroy
     this.filteredDepartmentList = this.departmentList.filter(
       x =>
       {
-        return this.filterObject(x.DepartmentInfo, keyword) || this.filterObject(x.DepartmentContactPerson, keyword);
+        return this.filterObject(x.departmentInfo, keyword) || this.filterObject(x.departmentContactPerson, keyword);
       }
     );
 

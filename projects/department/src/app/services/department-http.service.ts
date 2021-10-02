@@ -35,7 +35,7 @@ export class DepartmentHttpService implements OnDestroy
   {
     // return this.http.get<ResponseBaseModel<Department>>(`${ this.apiUrl }/departments/${ id }`);
 
-    const department = this.departmentListSubject.value.find(item => item.Id === id);
+    const department = this.departmentListSubject.value.find(item => item.id === id);
 
     return of({ data: department } as ResponseBaseModel<Department>);
   }
@@ -45,7 +45,7 @@ export class DepartmentHttpService implements OnDestroy
     // return this.http.post<ResponseBaseModel<boolean>>(`${ this.apiUrl }/departments`, department);
 
     let departments = this.departmentListSubject.value;
-    department.Id = (Math.random() + 1).toString(36).substring(3);
+    department.id = (Math.random() + 1).toString(36).substring(3);
     departments.push(department);
 
     this.departmentListSubject.next(departments);
@@ -58,7 +58,7 @@ export class DepartmentHttpService implements OnDestroy
     // return this.http.patch<ResponseBaseModel<boolean>>(`${ this.apiUrl }/departments/${ id }`, department);
 
     let departments = this.departmentListSubject.value;
-    const departmentIndex = departments.findIndex(item => item.Id === id);
+    const departmentIndex = departments.findIndex(item => item.id === id);
 
     if (departmentIndex !== -1)
     {
@@ -75,7 +75,7 @@ export class DepartmentHttpService implements OnDestroy
     // return this.http.delete<null>(`${ this.apiUrl }/departments/${ id }`);
 
     let departments = this.departmentListSubject.value;
-    const departmentIndex = departments.findIndex(item => item.Id === id);
+    const departmentIndex = departments.findIndex(item => item.id === id);
 
     if (departmentIndex !== -1)
     {
@@ -91,27 +91,27 @@ export class DepartmentHttpService implements OnDestroy
   {
     return [
       {
-        Id: '1',
-        DepartmentInfo: {
-          Name: 'Cordiology',
-          APIKey: '10f453e9-b50e-4f88-83f2-85785ca44c87'
+        id: '1',
+        departmentInfo: {
+          name: 'Cordiology',
+          apiKey: '10f453e9-b50e-4f88-83f2-85785ca44c87'
         },
-        DepartmentContactPerson: {
-          Name: 'Hossein',
-          Email: 'hsn.azizkhani@gmail.com',
-          Telephone: '88442200'
+        departmentContactPerson: {
+          name: 'Hossein',
+          email: 'hsn.azizkhani@gmail.com',
+          telephone: '88442200'
         }
       },
       {
-        Id: '2',
-        DepartmentInfo: {
-          Name: 'Oncology',
-          APIKey: '00847ae4-8bf9-4f6f-bf59-bc0051445173'
+        id: '2',
+        departmentInfo: {
+          name: 'Oncology',
+          apiKey: '00847ae4-8bf9-4f6f-bf59-bc0051445173'
         },
-        DepartmentContactPerson: {
-          Name: 'Jack',
-          Email: 'jack@gmail.com',
-          Telephone: '77335599'
+        departmentContactPerson: {
+          name: 'Jack',
+          email: 'jack@gmail.com',
+          telephone: '77335599'
         }
       }
     ];
