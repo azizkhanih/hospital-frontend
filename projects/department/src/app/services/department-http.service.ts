@@ -26,9 +26,9 @@ export class DepartmentHttpService
     return this.http.post<boolean>(`${ this.apiUrl }/departments`, department);
   }
 
-  patchDepartment(id: string, department: Department): Observable<boolean>
+  putDepartment(id: string, department: Department): Observable<boolean>
   {
-    return this.http.patch<boolean>(`${ this.apiUrl }/departments/${ id }`, department);
+    return this.http.put<boolean>(`${ this.apiUrl }/departments/${ id }`, department);
   }
 
   deleteDepartment(id: string): Observable<boolean>

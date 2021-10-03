@@ -31,7 +31,7 @@ export class DepartmentComponent implements OnInit, OnDestroy
   )
   {
     this.departmentForm = this.formBuilder.group({
-      id: [''],
+      departmentId: [''],
       departmentInfoForm: this.formBuilder.group({
         name: [null, [Validators.required]],
         apiKey: [null, [Validators.required]]
@@ -69,7 +69,7 @@ export class DepartmentComponent implements OnInit, OnDestroy
       {
         const data = response;
         this.departmentForm.setValue({
-          id: data.id,
+          departmentId: data.departmentId,
           departmentInfoForm: {
             name: data.departmentInfo.name,
             apiKey: data.departmentInfo.apiKey
@@ -113,7 +113,7 @@ export class DepartmentComponent implements OnInit, OnDestroy
     }
 
     const department = new Department(
-      this.departmentForm.value.id,
+      this.departmentForm.value.departmentId,
       new DepartmentInfo(
         this.departmentForm.value.departmentInfoForm.name,
         this.departmentForm.value.departmentInfoForm.apiKey),
@@ -125,7 +125,7 @@ export class DepartmentComponent implements OnInit, OnDestroy
 
     const requestObservable = !this.departmentId ?
       this.departmentService.postDepartment(department) :
-      this.departmentService.patchDepartment(this.departmentId, department);
+      this.departmentService.putDepartment(this.departmentId, department);
 
     requestObservable.subscribe({
       next: () =>

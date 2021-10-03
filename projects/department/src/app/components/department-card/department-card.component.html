@@ -10,11 +10,11 @@
             <div ngbDropdown class="d-inline-block">
                 <button class="btn btn-success" id="dropdownBasic1" ngbDropdownToggle></button>
                 <div ngbDropdownMenu aria-labelledby="dropdownBasic1">
-                    <button ngbDropdownItem class="text-start" (click)="editDepartment(department.id)"><i
+                    <button ngbDropdownItem class="text-start" (click)="editDepartment(department.departmentId)"><i
                             class="fa fa-edit px-2" aria-hidden="true"></i>{{
                         'COMMON.EDIT' |
                         translate }}</button>
-                    <button ngbDropdownItem class="text-start" (click)="deleteDepartment(department.id)"><i
+                    <button ngbDropdownItem class="text-start" (click)="deleteDepartment(department.departmentId)"><i
                             class="fa fa-trash px-2" aria-hidden="true"></i>{{
                         'COMMON.DELETE' |
                         translate }}</button>

@@ -1,16 +1,16 @@
 export class Department
 {
-    id: string;
+    departmentId: string;
     departmentInfo: DepartmentInfo;
     departmentContactPerson: DepartmentContactPerson;
 
     constructor(
-        id: string = '',
+        departmentId: string = '',
         departmentInfo = new DepartmentInfo('', ''),
         departmentContactPerson = new DepartmentContactPerson('', '', '')
     )
     {
-        this.id = id;
+        this.departmentId = departmentId;
         this.departmentInfo = departmentInfo;
         this.departmentContactPerson = departmentContactPerson;
     }

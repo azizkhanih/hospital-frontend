@@ -18,8 +18,8 @@ export class DepartmentService
     return this.departmentHttpService.postDepartment(department);
   }
 
-  patchDepartment(id: string, department: Department): Observable<boolean>
+  putDepartment(id: string, department: Department): Observable<boolean>
   {
-    return this.departmentHttpService.patchDepartment(id, department);
+    return this.departmentHttpService.putDepartment(id, department);
   }
 }
