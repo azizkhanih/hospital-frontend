@@ -14,8 +14,23 @@
         "YES": "Yes",
         "NO": "No"
     },
+    "LOGIN": {
+        "NAME": "Name",
+        "LOGIN": "Login",
+        "LOGIN_USER": "Login user",
+        "CREATE_USER": "Create user",
+        "EMAIL": "Email",
+        "PASSWORD": "Password",
+        "CONFIRM_PASSWORD": "Confirm Password"
+    },
     "MESSAGE": {
+        "THE_OPERATION_WAS_SUCCESSFUL": "The operation was successful",
+        "PLEASE_LOG_IN": "Please login",
+        "SUCCESSFUL_LOGIN": "Successful login",
         "FIELD_IS_REQUIRED": "Field is required",
+        "PASSWORD_IS_REQUIRED": "Password is required",
+        "CONFIRM_PASSWORD_IS_REQUIRED": "Confirm password is required",
+        "PASSWORDS_NOT_MATCH": "Passwords must match",
         "EMAIL_FORMAT_IS_INVALID": "Email format is invalid"
     },
     "DEPARTMENTS": {

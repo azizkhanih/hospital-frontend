@@ -4,7 +4,7 @@ import { Injectable, TemplateRef } from '@angular/core';
 export class ToastService
 {
   private defaultDuration: number;
-  toasts: unknown[];
+  toasts: any[];
 
   headerTextWarning = '';
 
@@ -15,13 +15,13 @@ export class ToastService
   }
 
   // Push new Toasts to array with content and options
-  private show(textOrTpl: string | TemplateRef<unknown>, options = {})
+  private show(textOrTpl: string | TemplateRef<any>, options = {})
   {
     this.toasts.push({ textOrTpl, ...options });
   }
 
   // Callback method to remove Toast DOM element from view
-  remove(toast: unknown): void
+  remove(toast: any): void
   {
     this.toasts = this.toasts.filter((t) => t !== toast);
   }
@@ -92,7 +92,7 @@ export class ToastService
     });
   }
 
-  showCustomToast(customTemplate: string | TemplateRef<unknown>, classname = ''): void
+  showCustomToast(customTemplate: string | TemplateRef<any>, classname = ''): void
   {
     this.show(customTemplate, {
       classname: classname,

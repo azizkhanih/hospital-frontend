@@ -22,10 +22,12 @@ import { ToastService } from './toast.service';
   styleUrls: ['./toast.component.scss'],
   host: { '[class.ngb-toasts]': 'true' },
 })
-export class ToastComponent {
-  constructor(public toastService: ToastService) {}
+export class ToastComponent
+{
+  constructor(public toastService: ToastService) { }
 
-  isTemplate(toast: { textOrTpl: unknown }): boolean {
+  isTemplate(toast: { textOrTpl: any; }): boolean
+  {
     return toast.textOrTpl instanceof TemplateRef;
   }
 }

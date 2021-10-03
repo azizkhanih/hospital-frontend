@@ -1,4 +1,4 @@
-import { HttpClient, HttpClientModule } from '@angular/common/http';
+import { HttpClient, HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
 import { APP_INITIALIZER, NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
@@ -10,6 +10,8 @@ import { DepartmentCardModule } from './components/department-card/department-ca
 import { LayoutModule } from './layout/layout.module';
 import { DepartmentModule } from './pages/department/department.module';
 import { DepartmentsModule } from './pages/departments/departments.module';
+import { ErrorInterceptor } from './shared/interceptors/error.interceptor';
+import { JwtInterceptor } from './shared/interceptors/jwt.interceptor';
 import { SharedModule } from './shared/shared.module';
 
 const CLIMEDO_MODULES = [SharedModule, LayoutModule, DepartmentsModule, DepartmentModule, DepartmentCardModule];
@@ -44,7 +46,7 @@ export function translateFactory(translate: TranslateService)
     AppRoutingModule,
     HttpClientModule,
     NgbModule,
-    CLIMEDO_MODULES,
+    ...CLIMEDO_MODULES,
     TranslateModule.forRoot({
       defaultLanguage: 'en-us',
       loader: {
@@ -55,7 +57,9 @@ export function translateFactory(translate: TranslateService)
     }),
   ],
   providers: [
-    { provide: APP_INITIALIZER, useFactory: translateFactory, deps: [TranslateService], multi: true }
+    { provide: APP_INITIALIZER, useFactory: translateFactory, deps: [TranslateService], multi: true },
+    { provide: HTTP_INTERCEPTORS, useClass: JwtInterceptor, multi: true },
+    { provide: HTTP_INTERCEPTORS, useClass: ErrorInterceptor, multi: true },
   ],
   bootstrap: [AppComponent]
 })

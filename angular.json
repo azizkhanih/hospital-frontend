@@ -35,6 +35,11 @@
               "node_modules/@fortawesome/fontawesome-free/css/all.min.css",
               "projects/department/src/styles.scss"
             ],
+            "stylePreprocessorOptions": {
+              "includePaths": [
+                "projects/department/src/assets/styles"
+              ]
+            },
             "scripts": []
           },
           "configurations": {

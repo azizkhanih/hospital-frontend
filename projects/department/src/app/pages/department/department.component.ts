@@ -90,15 +90,13 @@ export class DepartmentComponent implements OnInit, OnDestroy
   }
 
   // convenience getter for easy access to form fields
-  // set to any for html binding
-  get departmentInfoFormControls(): any
+  get departmentInfoFormControls(): any  // set to any for html binding
   {
     return this.departmentForm.controls.departmentInfoForm;
   }
 
   // convenience getter for easy access to form fields
-  // set to any for html binding
-  get departmentContactPersonFormControls(): any
+  get departmentContactPersonFormControls(): any  // set to any for html binding
   {
     return this.departmentForm.controls.departmentContactPersonForm;
   }
