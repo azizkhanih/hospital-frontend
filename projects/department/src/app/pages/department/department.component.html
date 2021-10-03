@@ -1,6 +1,6 @@
 <div class="mb-3">
     <div class="mb-5">
-        <h4>{{ 'COMMON.DEPARTMENTS' | translate }} >
+        <h4><span class="breadcrumb-title" [routerLink]="['']">{{ 'COMMON.DEPARTMENTS' | translate }}</span> >
             <ng-container *ngIf="departmentId; then editDepartmentTitle; else createDepartmentTitle"></ng-container>
         </h4>
     </div>
