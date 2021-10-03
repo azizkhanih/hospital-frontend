@@ -17,6 +17,7 @@
     "LOGIN": {
         "NAME": "Name",
         "LOGIN": "Login",
+        "LOGOUT": "Log out",
         "LOGIN_USER": "Login user",
         "CREATE_USER": "Create user",
         "EMAIL": "Email",

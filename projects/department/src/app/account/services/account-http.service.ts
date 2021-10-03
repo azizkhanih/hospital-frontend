@@ -23,9 +23,9 @@ export class AccountHttpService
     return this.http.post<CreateSessionResponse>(`${ this.apiUrl }/sessions`, createSession);
   }
 
-  logOut(): Observable<null>
+  logOut(): Observable<boolean>
   {
-    return this.http.delete<null>(`${ this.apiUrl }/sessions`);
+    return this.http.delete<boolean>(`${ this.apiUrl }/sessions`);
   }
 
   getSessions(): Observable<User>

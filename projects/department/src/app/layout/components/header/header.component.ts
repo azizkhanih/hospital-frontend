@@ -1,4 +1,5 @@
 import { Component, Input, OnInit } from '@angular/core';
+import { AccountService } from './../../../account/services/account.service';
 
 @Component({
   selector: 'app-header',
@@ -9,10 +10,15 @@ export class HeaderComponent implements OnInit
 {
   @Input() title = '';
 
-  constructor() { }
+  constructor(private accountService: AccountService) { }
 
   ngOnInit(): void
   {
+  }
+
+  logout(): void
+  {
+    this.accountService.logout();
   }
 
 }
