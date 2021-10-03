@@ -54,8 +54,8 @@ export class DepartmentsComponent implements OnInit, OnDestroy
     this.departmentsService.getDepartments().subscribe({
       next: (response) =>
       {
-        this.departmentList = response.data;
-        this.filteredDepartmentList = response.data;
+        this.departmentList = response;
+        this.filteredDepartmentList = response;
         this.hideLoading();
       },
       error: () =>

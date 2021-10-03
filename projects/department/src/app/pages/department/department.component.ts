@@ -67,7 +67,7 @@ export class DepartmentComponent implements OnInit, OnDestroy
     this.departmentService.getDepartment(departmentId).subscribe({
       next: (response) =>
       {
-        const data = response.data;
+        const data = response;
         this.departmentForm.setValue({
           id: data.id,
           departmentInfoForm: {
