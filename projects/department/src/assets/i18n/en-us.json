@@ -25,6 +25,7 @@
     },
     "MESSAGE": {
         "THE_OPERATION_WAS_SUCCESSFUL": "The operation was successful",
+        "THE_ITEM_DELETED_SUCCESSFULLY": "The item deleted successfully",
         "PLEASE_LOG_IN": "Please login",
         "SUCCESSFUL_LOGIN": "Successful login",
         "FIELD_IS_REQUIRED": "Field is required",

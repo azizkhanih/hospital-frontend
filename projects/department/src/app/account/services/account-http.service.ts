@@ -1,7 +1,7 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
-import { User } from '../models';
+import { CreateSessionResponse, User } from '../models';
 import { environment } from './../../../environments/environment';
 import { CreateSession } from './../models/interfaces/create-session.model';
 import { CreateUser } from './../models/interfaces/create-user.model';
@@ -18,9 +18,9 @@ export class AccountHttpService
     return this.http.post<User>(`${ this.apiUrl }/users`, createUser);
   }
 
-  login(createSession: CreateSession): Observable<User>
+  login(createSession: CreateSession): Observable<CreateSessionResponse>
   {
-    return this.http.post<User>(`${ this.apiUrl }/sessions`, createSession);
+    return this.http.post<CreateSessionResponse>(`${ this.apiUrl }/sessions`, createSession);
   }
 
   logOut(): Observable<null>

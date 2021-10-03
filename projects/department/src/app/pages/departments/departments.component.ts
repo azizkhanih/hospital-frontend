@@ -1,6 +1,8 @@
 import { ChangeDetectionStrategy, ChangeDetectorRef, Component, OnDestroy, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
+import { TranslateService } from '@ngx-translate/core';
+import { ToastService } from 'projects/utilities/src/lib/toast/toast.service';
 import { Subject, Subscription } from 'rxjs';
 import { debounceTime, distinctUntilChanged } from 'rxjs/operators';
 import { Department } from '../../models';
@@ -27,14 +29,15 @@ export class DepartmentsComponent implements OnInit, OnDestroy
     private router: Router,
     private modalService: NgbModal,
     private departmentsService: DepartmentsService,
-    private changeDetectorRef: ChangeDetectorRef)
+    private changeDetectorRef: ChangeDetectorRef,
+    private toastService: ToastService,
+    private translateService: TranslateService)
   {
     this.searchTermSubscription = this.searchTermChanged.pipe(
       debounceTime(500),
       distinctUntilChanged())
       .subscribe((term: string) =>
       {
-        debugger;
         this.searchInDepartments(term);
       });
   }
@@ -57,6 +60,8 @@ export class DepartmentsComponent implements OnInit, OnDestroy
         this.departmentList = response;
         this.filteredDepartmentList = response;
         this.hideLoading();
+
+        this.changeDetectorRef.detectChanges();
       },
       error: () =>
       {
@@ -78,7 +83,7 @@ export class DepartmentsComponent implements OnInit, OnDestroy
   deleteDepartment(departmentId: string): void
   {
     const modalRef = this.modalService.open(ConfirmModalComponent, {
-      keyboard: true,
+      keyboard: false,
       backdrop: 'static',
     });
 
@@ -91,14 +96,17 @@ export class DepartmentsComponent implements OnInit, OnDestroy
       if (confirmed)
       {
         this.departmentsService.deleteDepartment(departmentId).subscribe({
-          next: () =>
+          next: (response) =>
           {
             modalRef.close(true);
+
             this.hideLoading();
-            this.getDepartments();
+
+            this.toastService.showSuccess(this.translateService.instant("MESSAGE.THE_ITEM_DELETED_SUCCESSFULLY"));
 
             this.searchTerm = '';
-            this.changeDetectorRef.detectChanges();
+
+            this.getDepartments();
           },
           error: () =>
           {

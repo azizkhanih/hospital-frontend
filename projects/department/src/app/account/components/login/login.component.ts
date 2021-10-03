@@ -3,6 +3,7 @@ import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { ActivatedRoute, Router } from '@angular/router';
 import { TranslateService } from '@ngx-translate/core';
 import { ToastService } from 'projects/utilities/src/lib/toast/toast.service';
+import { Account } from '../../models';
 import { CreateSession } from './../../models/interfaces/create-session.model';
 import { AccountService } from './../../services/account.service';
 import { LoginService } from './login.service';
@@ -31,7 +32,7 @@ export class LoginComponent implements OnInit
   )
   {
     // redirect to main route if already logged in
-    if (this.accountService.accountValue?.token)
+    if (this.accountService.accountValue?.accessToken)
     {
       this.router.navigate(['/']);
     }
@@ -69,12 +70,23 @@ export class LoginComponent implements OnInit
     } as CreateSession;
 
     this.loginService.login(createSession).subscribe({
-      next: () =>
+      next: (response) =>
       {
+        const account = {
+          user: {
+            email: createSession.email
+          },
+          accessToken: response.accessToken,
+          refreshToken: response.refreshToken
+        } as Account;
+
+        this.accountService.setAccountValue(account);
+
         this.toastService.showSuccess(this.translateService.instant("MESSAGE.SUCCESSFUL_LOGIN"));
+
         this.router.navigate([this.returnUrl]);
       },
-      error: error =>
+      error: () =>
       {
         this.loading = false;
       }

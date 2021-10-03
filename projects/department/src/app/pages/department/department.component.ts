@@ -1,6 +1,8 @@
 import { ChangeDetectionStrategy, ChangeDetectorRef, Component, OnDestroy, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { ActivatedRoute, Router } from '@angular/router';
+import { TranslateService } from '@ngx-translate/core';
+import { ToastService } from 'projects/utilities/src/lib/toast/toast.service';
 import { Subscription } from 'rxjs';
 import { DepartmentContactPerson, DepartmentInfo } from '../../models';
 import { Department } from './../../models/classes/department.model';
@@ -27,7 +29,9 @@ export class DepartmentComponent implements OnInit, OnDestroy
     private activatedRoute: ActivatedRoute,
     private formBuilder: FormBuilder,
     private departmentService: DepartmentService,
-    private changeDetectorRef: ChangeDetectorRef
+    private changeDetectorRef: ChangeDetectorRef,
+    private toastService: ToastService,
+    private translateService: TranslateService
   )
   {
     this.departmentForm = this.formBuilder.group({
@@ -128,6 +132,7 @@ export class DepartmentComponent implements OnInit, OnDestroy
     requestObservable.subscribe({
       next: () =>
       {
+        this.toastService.showSuccess(this.translateService.instant("MESSAGE.THE_OPERATION_WAS_SUCCESSFUL"));
         this.router.navigate(['']);
         this.hideLoading();
       },

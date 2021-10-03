@@ -1,6 +1,6 @@
 // ********************-- storage key --******************** //
 export const storageKey = {
-  USER: 'user',
+  ACCOUNT: 'account',
 };
 
 // ********************-- http --******************** //

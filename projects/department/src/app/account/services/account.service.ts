@@ -19,7 +19,7 @@ export class AccountService implements OnDestroy
     private accountHttpService: AccountHttpService,
   )
   {
-    const account = storageService.get<Account>(storageKey.USER);
+    const account = storageService.get<Account>(storageKey.ACCOUNT);
     this.accountSubject = new BehaviorSubject<Account>(account ? account : {} as Account);
     this.account = this.accountSubject.asObservable();
   }
@@ -34,16 +34,26 @@ export class AccountService implements OnDestroy
     return this.accountSubject.value;
   }
 
+  public setAccountValue(account: Account): void
+  {
+    this.accountSubject.next(account);
+
+    this.storageService.set(storageKey.ACCOUNT, account);
+  }
+
   logout(): void
   {
-    if (this.accountValue?.token)
+    if (this.accountValue?.accessToken)
     {
       this.accountHttpService.logOut().subscribe({
         next: () =>
         {
           this.routeToLogin();
         },
-        error: error => { }
+        error: error =>
+        {
+          this.routeToLogin();
+        }
       });
     } else
     {
@@ -58,6 +68,8 @@ export class AccountService implements OnDestroy
 
   routeToLogin(): void
   {
+    this.accountSubject.next({} as Account);
+    this.storageService.remove(storageKey.ACCOUNT);
     this.router.navigate(['/account/login']);
   }
 }

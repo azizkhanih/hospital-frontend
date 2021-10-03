@@ -5,7 +5,6 @@ import { TranslateService } from '@ngx-translate/core';
 import { ToastService } from 'projects/utilities/src/lib/toast/toast.service';
 import { MustMatch } from '../../../shared/helpers/validators/must-match.validator';
 import { CreateUser } from './../../models/interfaces/create-user.model';
-import { AccountService } from './../../services/account.service';
 import { CreateUserService } from './create-user.service';
 
 @Component({
@@ -25,18 +24,11 @@ export class CreateUserComponent implements OnInit
     private router: Router,
     private formBuilder: FormBuilder,
     private route: ActivatedRoute,
-    private accountService: AccountService,
     private createUserService: CreateUserService,
     private toastService: ToastService,
     private translateService: TranslateService
   )
-  {
-    // redirect to main route if already logged in
-    if (this.accountService.accountValue?.token)
-    {
-      this.router.navigate(['/']);
-    }
-  }
+  { }
 
   ngOnInit()
   {

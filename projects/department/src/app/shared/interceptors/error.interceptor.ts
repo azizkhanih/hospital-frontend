@@ -15,21 +15,27 @@ export class ErrorInterceptor implements HttpInterceptor
     return next.handle(request).pipe(
       catchError((err: HttpErrorResponse) =>
       {
+        debugger;
         if ([401, 403].indexOf(err.status) !== -1)
         {
+
           this.toastService.showError(err.error);
 
           // auto logout if 401 Unauthorized or 403 Forbidden response returned from api
           this.accountService.logout();
-        } else if ([400].indexOf(err.status) !== -1)
+        }
+        else if ([400].indexOf(err.status) !== -1)
         {
           this.toastService.showError(err.error[0]);
-        } else if (err.error instanceof Error)
+        }
+        else if (err.error instanceof Error)
         {
           // A client-side or network error occurred. Handle it accordingly.
           // console.error('An error occurred:', err.error.message);
-        } else
+        }
+        else
         {
+          this.toastService.showError(err.error);
           // The backend returned an unsuccessful response code.
           // The response body may contain clues as to what went wrong,
           const errorResponse = err;
