@@ -18,9 +18,6 @@ export class ErrorInterceptor implements HttpInterceptor
         debugger;
         if ([401, 403].indexOf(err.status) !== -1)
         {
-
-          this.toastService.showError(err.error);
-
           // auto logout if 401 Unauthorized or 403 Forbidden response returned from api
           this.accountService.logout();
         }
