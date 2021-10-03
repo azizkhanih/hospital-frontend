@@ -54,6 +54,7 @@ export class DepartmentsComponent implements OnInit, OnDestroy
 
   getDepartments(): void
   {
+    this.showLoading();
     this.departmentsService.getDepartments().subscribe({
       next: (response) =>
       {
@@ -95,6 +96,7 @@ export class DepartmentsComponent implements OnInit, OnDestroy
     {
       if (confirmed)
       {
+        this.showLoading();
         this.departmentsService.deleteDepartment(departmentId).subscribe({
           next: (response) =>
           {

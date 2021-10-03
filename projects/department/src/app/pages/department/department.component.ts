@@ -129,6 +129,7 @@ export class DepartmentComponent implements OnInit, OnDestroy
       this.departmentService.postDepartment(department) :
       this.departmentService.putDepartment(this.departmentId, department);
 
+    this.showLoading();
     requestObservable.subscribe({
       next: () =>
       {

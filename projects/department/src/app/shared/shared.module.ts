@@ -3,6 +3,7 @@ import { NgModule } from '@angular/core';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { NgbModalModule, NgbModule, NgbToastModule } from '@ng-bootstrap/ng-bootstrap';
 import { TranslateModule } from '@ngx-translate/core';
+import { NgxLoadingModule } from 'ngx-loading';
 import { ToastComponent } from './../../../../utilities/src/lib/toast/toast.component';
 import { ConfirmModalComponent } from './components/confirm-modal/confirm-modal.component';
 
@@ -17,12 +18,14 @@ const SHARED_COMPONENTS = [ConfirmModalComponent, ToastComponent];
   imports: [
     ...BASE_MODULES,
     ...NG_BOOTSTRAP_MODULES,
-    TranslateModule
+    TranslateModule,
+    NgxLoadingModule
   ],
   exports: [
     ...BASE_MODULES,
     ...NG_BOOTSTRAP_MODULES,
     TranslateModule,
+    NgxLoadingModule,
     SHARED_COMPONENTS
   ]
 })
