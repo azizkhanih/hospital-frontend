@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
+import { DepartmentHttpService } from '../../http-services/department-http.service';
 import { Department } from '../../models';
-import { DepartmentHttpService } from './../../services/department-http.service';
 
 @Injectable({ providedIn: 'root' })
 export class DepartmentsService
